@@ -1,0 +1,8 @@
+## Interface: 80300
+## Title: Caravana
+## Author: gi2k15
+## Notes: Tells you where you lasted camped.
+## Version: 0.1
+## SavedVariablesPerCharacter: CaravanDB
+
+caravana.lua
