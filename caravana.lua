@@ -4,15 +4,24 @@
 local f = CreateFrame("Frame")
 
 local events = {}
+local db
+
+function events:PLAYER_LOGIN(...)
+	db = CaravanaDB or {}
+end
+
+function events:PLAYER_LOGOUT(...)
+	CaravanaDB = db
+end
 
 function events:UNIT_SPELLCAST_SUCCEEDED(...)
 	local _,_,spellID = ...
 	if spellID == 312370 then
 		local subzone, zone = GetSubZoneText(), GetZoneText()
 		if subzone == "" then
-			CaravanaDB = zone
+			db.place = zone
 		else
-			CaravanaDB = string.format("%s, %s", subzone, zone)
+			db.place = string.format("%s, %s", subzone, zone)
 		end
 	end
 end
@@ -26,7 +35,7 @@ end
 
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
 	local _,SpellID = self:GetSpell()
-	if SpellID == 312372 and CaravanaDB then
-		self:AddLine("@ " .. CaravanaDB,0.94,0.9,0.55,true)
+	if SpellID == 312372 and db.place then
+		self:AddLine("@ " .. db.place,0.94,0.9,0.55,true)
 	end
 end)
