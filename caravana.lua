@@ -1,13 +1,38 @@
 -- Make Campfire = 312370
 -- Return to Camp = 312372
 
+local db
+
+local HBD = LibStub("HereBeDragons-2.0")
+local Pins = LibStub("HereBeDragons-Pins-2.0")
+local iconRef = true
+
 local f = CreateFrame("Frame")
 
+local icon = CreateFrame("Frame")
+icon:SetSize(16,16)
+icon.texture = icon:CreateTexture()
+icon.texture:SetAtlas("poi-town")
+icon.texture:SetAllPoints()
+icon.texture:SetVertexColor(247/255, 160/255, 160/255)
+icon:Hide()
+icon:SetScript("OnEnter", function(self)
+	local camp = GetSpellInfo(312372)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 5, 0)
+	GameTooltip:SetText(format("%s\n|cFFFFFFFF%s", camp, db.place), _, _, _, _, true)
+	GameTooltip:Show()
+end)
+icon:SetScript("OnLeave", function(self)
+	GameTooltip:Hide()
+end)
+
 local events = {}
-local db
 
 function events:PLAYER_LOGIN(...)
 	db = CaravanaDB or {}
+	if db.x and db.y and db.instance and db.place then
+		Pins:AddWorldMapIconWorld(iconRef, icon, db.instance, db.x, db.y, HBD_PINS_WORLDMAP_SHOW_WORLD)
+	end
 end
 
 function events:PLAYER_LOGOUT(...)
@@ -23,6 +48,9 @@ function events:UNIT_SPELLCAST_SUCCEEDED(...)
 		else
 			db.place = string.format("%s, %s", subzone, zone)
 		end
+		Pins:RemoveAllWorldMapIcons(iconRef)
+		db.x, db.y, db.instance = HBD:GetPlayerWorldPosition()
+		Pins:AddWorldMapIconWorld(iconRef, icon, db.instance, db.x, db.y, HBD_PINS_WORLDMAP_SHOW_WORLD)
 	end
 end
 

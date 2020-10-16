@@ -5,4 +5,9 @@
 ## Version: @project-version@
 ## SavedVariablesPerCharacter: CaravanaDB
 
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\HereBeDragons-2.0.lua
+Libs\HereBeDragons-Pins-2.0.lua
+
 caravana.lua
