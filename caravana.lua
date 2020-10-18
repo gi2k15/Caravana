@@ -2,6 +2,7 @@
 -- Return to Camp = 312372
 
 local db
+local events = {}
 
 local HBD = LibStub("HereBeDragons-2.0")
 local Pins = LibStub("HereBeDragons-Pins-2.0")
@@ -26,8 +27,6 @@ icon:SetScript("OnLeave", function(self)
 	GameTooltip:Hide()
 end)
 
-local events = {}
-
 function events:PLAYER_LOGIN(...)
 	db = CaravanaDB or {}
 	if db.x and db.y and db.instance and db.place then
@@ -42,12 +41,8 @@ end
 function events:UNIT_SPELLCAST_SUCCEEDED(...)
 	local _,_,spellID = ...
 	if spellID == 312370 then
-		local subzone, zone = GetSubZoneText(), GetZoneText()
-		if subzone == "" then
-			db.place = zone
-		else
-			db.place = string.format("%s, %s", subzone, zone)
-		end
+ 		local subzone, zone = GetSubZoneText(), GetZoneText()
+		db.place = subzone == "" and zone or format("%s, %s", subzone, zone)
 		Pins:RemoveAllWorldMapIcons(iconRef)
 		db.x, db.y, db.instance = HBD:GetPlayerWorldPosition()
 		Pins:AddWorldMapIconWorld(iconRef, icon, db.instance, db.x, db.y, HBD_PINS_WORLDMAP_SHOW_WORLD)
