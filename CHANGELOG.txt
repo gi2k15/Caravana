@@ -1,0 +1,8 @@
+0.2 - 18/10/2020
+* A pin is added to the world map showing where you camped.
+
+0.1.2 - 15/10/2020
+* TOC updated
+
+0.1.1
+* Initial release
