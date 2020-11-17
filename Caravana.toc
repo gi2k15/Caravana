@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 90002
 ## Title: Caravana
 ## Author: gi2k15
 ## Notes: Reminds you the location of your Vulpera camp.

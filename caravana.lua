@@ -46,7 +46,7 @@ end
 function events:UNIT_SPELLCAST_SUCCEEDED(...)
     local _,_,spellID = ...
     if spellID == 312370 then
-         local subzone, zone = GetSubZoneText(), GetZoneText()
+        local subzone, zone = GetSubZoneText(), GetZoneText()
         db.place = subzone == "" and zone or format("%s, %s", subzone, zone)
         Pins:RemoveAllWorldMapIcons(iconRef)
         db.x, db.y, db.instance = HBD:GetPlayerWorldPosition()
