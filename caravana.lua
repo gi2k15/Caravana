@@ -1,13 +1,11 @@
 -- Make Campfire = 312370
 -- Return to Camp = 312372
 
-if select(2, UnitRace('player')) ~= "Vulpera" then
-    DisableAddOn("Caravana")
-    return
-end
+if select(2, UnitRace('player')) ~= "Vulpera" then return end
 
 local db
 local events = {}
+local iconHome = CreateAtlasMarkup("poi-town")
 
 local HBD = LibStub("HereBeDragons-2.0")
 local Pins = LibStub("HereBeDragons-Pins-2.0")
@@ -64,6 +62,6 @@ end
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
     local _,SpellID = self:GetSpell()
     if SpellID == 312372 and db.place then
-        self:AddLine("@ " .. db.place,0.94,0.9,0.55,true)
+        self:AddLine(iconHome .. " " .. db.place,0.94,0.9,0.55,true)
     end
 end)
