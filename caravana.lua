@@ -5,7 +5,8 @@ if select(2, UnitRace('player')) ~= "Vulpera" then return end
 
 local db
 local events = {}
-local iconHome = CreateAtlasMarkup("poi-town")
+local iconCamp = "poi-islands-table" -- change this to change the icons.
+local atlasCamp = CreateAtlasMarkup(iconCamp, 20, 20)
 
 local HBD = LibStub("HereBeDragons-2.0")
 local Pins = LibStub("HereBeDragons-Pins-2.0")
@@ -14,11 +15,11 @@ local iconRef = true
 local f = CreateFrame("Frame")
 
 local icon = CreateFrame("Frame")
-icon:SetSize(16,16)
+icon:SetSize(20, 20)
 icon.texture = icon:CreateTexture()
-icon.texture:SetAtlas("poi-town")
+icon.texture:SetAtlas(iconCamp)
 icon.texture:SetAllPoints()
-icon.texture:SetVertexColor(247/255, 160/255, 160/255)
+--icon.texture:SetVertexColor(247/255, 160/255, 160/255)
 icon:Hide()
 icon:SetScript("OnEnter", function(self)
     local camp = GetSpellInfo(312372)
@@ -62,6 +63,6 @@ end
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
     local _,SpellID = self:GetSpell()
     if SpellID == 312372 and db.place then
-        self:AddLine(iconHome .. " " .. db.place,0.94,0.9,0.55,true)
+        self:AddLine(atlasCamp .. " " .. db.place ,0.94, 0.9, 0.55,true)
     end
 end)
