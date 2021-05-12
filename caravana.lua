@@ -63,6 +63,6 @@ end
 GameTooltip:HookScript("OnTooltipSetSpell", function(self)
     local _,SpellID = self:GetSpell()
     if SpellID == 312372 and db.place then
-        self:AddLine(atlasCamp .. " " .. db.place ,0.94, 0.9, 0.55,true)
+        self:AddLine(atlasCamp .. " " .. db.place, 0.94, 0.9, 0.55, true)
     end
 end)

@@ -1,6 +1,6 @@
 ## Interface: 90005
 ## Title: Caravana
-## Author: gi2k15
+## Author: Beviselynt
 ## Notes: Reminds you the location of your Vulpera camp.
 ## Version: @project-version@
 ## SavedVariablesPerCharacter: CaravanaDB
