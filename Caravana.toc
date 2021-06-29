@@ -1,4 +1,4 @@
-## Interface: 91000
+## Interface: 90100
 ## Title: Caravana
 ## Author: Beviselynt
 ## Notes: Reminds you the location of your Vulpera camp.
