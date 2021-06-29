@@ -1,9 +1,12 @@
-## Interface: 90005
+## Interface: 91000
 ## Title: Caravana
 ## Author: Beviselynt
 ## Notes: Reminds you the location of your Vulpera camp.
 ## Version: @project-version@
 ## SavedVariablesPerCharacter: CaravanaDB
+## X-Curse-Project-ID: 383915
+## X-Wago-ID: VBNB80Kx
+## X-WoWI-ID: 25580
 
 Libs\LibStub.lua
 Libs\CallbackHandler-1.0.lua
