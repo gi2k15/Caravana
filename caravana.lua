@@ -59,7 +59,7 @@ for k, v in pairs(events) do
     f:RegisterEvent(k)
 end
 
-GameTooltip:HookScript("OnTooltipSetSpell", function(self)
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, function(self)
     local _, SpellID = self:GetSpell()
     if SpellID == 312372 and db.place then
         self:AddLine(atlasCamp .. " " .. db.place, 0.94, 0.9, 0.55, true)
