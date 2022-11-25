@@ -59,9 +59,17 @@ for k, v in pairs(events) do
     f:RegisterEvent(k)
 end
 
-TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, function(self)
-    local _, SpellID = self:GetSpell()
-    if SpellID == 312372 and db.place then
-        self:AddLine(atlasCamp .. " " .. db.place, 0.94, 0.9, 0.55, true)
+local function AddTooltipText(tooltip, spellID)
+    if spellID == 312372 and db.place then
+        tooltip:AddLine(atlasCamp .. " " .. db.place, 0.94, 0.9, 0.55, true)
     end
+end
+
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, function(self, data)
+    local _, SpellID = self:GetSpell()
+    AddTooltipText(self, SpellID)
+end)
+
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Macro, function(self, data)
+    AddTooltipText(self, data.lines[1].tooltipID)
 end)
