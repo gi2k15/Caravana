@@ -1,6 +1,7 @@
 ## Interface: 110000
 ## Title: Caravana
-## Author: Beviselynt
+## IconTexture: Interface/Addons/Caravana/Media/icon.tga
+## Author: Beviselynt, Zaazu
 ## Notes: Reminds you the location of your Vulpera camp.
 ## Version: @project-version@
 ## SavedVariablesPerCharacter: CaravanaDB
