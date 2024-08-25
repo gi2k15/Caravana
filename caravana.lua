@@ -19,7 +19,7 @@ icon.texture:SetAtlas(iconCamp)
 icon.texture:SetAllPoints()
 icon:Hide()
 icon:SetScript("OnEnter", function(self)
-    local camp = C_Spell.GetSpellInfo(312372)
+    local camp = C_Spell.GetSpellInfo(312372).name
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 5, 0)
     GameTooltip:SetText(format("%s\n|cFFFFFFFF%s", camp, db.place), _, _, _, _, true)
     GameTooltip:Show()
