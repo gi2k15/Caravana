@@ -1,4 +1,4 @@
-## Interface: 110000
+## Interface: 110002
 ## Title: Caravana
 ## IconTexture: Interface/Addons/Caravana/Media/icon.tga
 ## Author: Beviselynt, Zaazu
