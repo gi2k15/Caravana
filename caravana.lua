@@ -12,6 +12,9 @@ local HBD     = LibStub("HereBeDragons-2.0")
 local Pins    = LibStub("HereBeDragons-Pins-2.0")
 local iconRef = true
 
+local makeCampName = C_Spell.GetSpellName(312370)
+local isMakingCamp = false
+
 local icon = CreateFrame("Frame")
 icon:SetSize(20, 20)
 icon.texture = icon:CreateTexture()
@@ -39,9 +42,36 @@ function events:PLAYER_LOGOUT(...)
     CaravanaDB = db
 end
 
+function events:UNIT_SPELLCAST_START(...)
+    local unit = ...
+    if unit == "player" then
+        -- UnitCastingInfo returns the localized name as a plain string, bypassing secrets
+        local name = UnitCastingInfo("player")
+        if name and name == makeCampName then
+            isMakingCamp = true
+        end
+    end
+end
+
+function events:UNIT_SPELLCAST_INTERRUPTED(...)
+    local unit = ...
+    if unit == "player" then
+        isMakingCamp = false
+    end
+end
+
+function events:UNIT_SPELLCAST_FAILED(...)
+    local unit = ...
+    if unit == "player" then
+        isMakingCamp = false
+    end
+end
+
 function events:UNIT_SPELLCAST_SUCCEEDED(...)
-    local _, _, spellID = ...
-    if spellID == 312370 then
+    local unit = ...
+    if unit == "player" and isMakingCamp then
+        isMakingCamp = false
+        
         local subzone, zone = GetSubZoneText(), GetZoneText()
         db.place = subzone == "" and zone or format("%s, %s", subzone, zone)
         Pins:RemoveAllWorldMapIcons(iconRef)
